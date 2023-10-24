@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+	<apiVersion>57.0</apiVersion>
+	<description>Related List</description>
+	<isExposed>true</isExposed>
+	<masterLabel>Related List</masterLabel>
+	<targets>
+		<target>lightning__RecordPage</target>
+	</targets>
+	<targetConfigs>
+		<targetConfig targets="lightning__RecordPage">
+			<supportedFormFactors>
+				<supportedFormFactor type="Small"/>
+				<supportedFormFactor type="Large"/>
+			</supportedFormFactors>
+			<property name="title" type="String" label="Title"
+					  description="Specify the title for the Related List" required="true"/>
+			<property name="sObjectName" type="String" label="Object API Name"
+					  description="Specify the child object API name" required="true"/>
+			<property name="parentFieldName" type="String" label="Parent Field API Names"
+					  description="Specify one or several field API Names  through which parent and child are related. For a list, use an expression like - [ParentFieldApiName1, ParentFieldApiName2, and so on]" required="true"/>
+			<property name="parameters" type="String" label="Additional Parameters"
+					  description="Put additional parameters in the JSON format" default=""/>
+            <property name="mobileParameters" type="String" label="Additional Parameters for Mobile"
+			          description="This configuration applies for tabled and mobile only. Put additional parameters in the JSON format" default=""/>
+		</targetConfig>
+	</targetConfigs> 
+</LightningComponentBundle>

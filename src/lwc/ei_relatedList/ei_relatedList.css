@@ -1,0 +1,65 @@
+.rl-panel {
+	border: var(--lwc-borderWidthThin, 1px) solid var(--lwc-borderColor, rgb(221, 219, 218));
+	border-radius: var(--lwc-borderRadiusMedium, 0.25rem);
+}
+
+.rl-panel-title {
+	font-weight: 600;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+	border-bottom: var(--lwc-borderWidthThin) solid var(--lwc-borderColor);
+	display: flex;
+	align-items: center;
+}
+
+.rl-panel-title-text { 
+	flex: 1 1 auto;
+}
+
+.rl-panel-title-button {
+	font-size: 0.8125rem;
+	font-weight: 400;
+}
+
+.rl-buttons-group {
+	display: flex;
+}
+
+.rl-table-container {
+	overflow: auto;
+}
+
+.rl-table {
+	min-width: 60rem;
+	display: flex;
+}
+
+.slds-card__footer[c-ei_relatedlist_ei_relatedlist] {
+	margin-top: -1px;
+}
+
+.rl-panel-title-button:focus {
+	background-color: var(--lwc-colorBackgroundRowHover, rgb(243, 242, 242));
+}
+
+.rl-panel-title-icon {
+	margin-right: var(--lwc-spacingSmall, 0.75rem);
+}
+
+.rl-panel-footer.slds-card__footer {
+	margin: -2px;
+}
+
+div.table-content.disable-content{
+	pointer-events: none;
+	opacity: 0.9;
+	filter: grayscale(0.8);
+}
+
+.rl-datatable {
+    padding: 0 1px 1px 1px;
+}
+
+.white-background {
+	background-color: white;
+}

@@ -1,0 +1,88 @@
+<!-- Related List -->
+<template>
+    <div class="rl-panel data-related-list-container">
+        <template if:true={configurations}>
+            <div class="rl-panel-title slds-page-header slds-card__header-title .slds-truncate ">
+                <div class="rl-panel-title-icon">
+                    <lightning-icon size="small" icon-name={iconName}></lightning-icon>
+                </div>
+                <div class="rl-panel-title-text">{title} ({numberOfRecordsTitle})</div>
+                <template if:true={configurations.buttons}>
+                    <div class="actionsWrapper">
+                        <ul class="rl-buttons-group branding-actions slds-m-left_xx-small small oneActionsRibbon forceActionsContainer">
+                            <template if:true={showRefresh}>
+                                <li class="slds-m-horizontal_x-small">
+                                    <lightning-button title="Refresh" icon-name="utility:refresh"
+                                                      onclick={refreshRecords}></lightning-button>
+                                </li>
+                            </template>
+                            <template for:each={configurations.buttons} for:item="action"> 
+
+                                <template if:true={action.icon}>
+                                    <li key={action.label} class="slds-m-horizontal_x-small">
+                                        <lightning-icon
+                                                title={action.name}
+                                                icon-name={action.icon}
+                                                size="x-small"
+                                                alternative-text={action.label}
+                                                onclick={handleButtonClick}
+                                        ></lightning-icon>
+                                    </li>
+                                </template>
+
+                                <template if:false={action.icon}>
+                                    <li key={action.label}
+                                        class="slds-button slds-button_neutral slds-m-horizontal_x-small">
+                                        <a title={action.name} class="forceActionLink rl-panel-title-button"
+                                           onclick={handleButtonClick}>
+                                            <div title={action.name}>{action.label}</div>
+                                        </a>
+                                    </li>
+                                </template>
+
+                            </template>
+                        </ul>
+                    </div>
+                </template>
+            </div>
+                <div class="rl-datatable slds-is-relative table-content" style={datatableHeight}>
+                <template if:true={_isTableContentVisible}>
+                    <template if:true={data}>
+                        <c-ei_datatable-with-inline-editing
+                            key-field="id"
+                            data={data}
+                            columns={columns}
+                            onpicklistchanged={handlePicklistChanged}
+                            onaction_button_clicked={handleActionButtonClicked}
+                            errors={error}
+                            draft-values={updatedRecordsFlag}
+                            onsave={handleSave}
+                            oncancel={handleCancel}
+                            oncellchange={handleCellChange}
+                            hide-checkbox-column
+                            resize-column-disabled
+                            column-widths-mode={columnWidthsMode}
+                            onsort={handleSort}
+                            sorted-by={sortedBy}
+                            sorted-direction={sortDirection}
+                            default-sort-direction="asc"
+                            onrowaction={handleRowAction}
+                        ></c-ei_datatable-with-inline-editing>
+                    </template>
+                </template>
+            </div>
+            <template if:true={showViewAllButton}>
+                <a>
+                    <div class="slds-card__footer white-background" onclick={handleViewAll}>
+                        <span>{footerButtonText}</span>
+                    </div>
+                </a>
+            </template>
+        </template>
+        <div class="rl-spinner">
+            <template if:true={showSpinner}>
+                <lightning-spinner alternative-text="Loading"></lightning-spinner>
+            </template>
+        </div>
+    </div>
+</template>

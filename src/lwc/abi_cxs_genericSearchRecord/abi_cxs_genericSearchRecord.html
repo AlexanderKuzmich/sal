@@ -1,0 +1,47 @@
+<template>
+    <div class=" slds-form-element">
+        <template if:true={showInput} class="styles-container">
+            <lightning-input
+                variant="label-hidden"
+                onchange={handleKeyUp}
+                class = "requiredClass"
+                placeholder={searchLabel}
+                onclick={handleClick}
+                onfocusout={closeListOutsideAreaMobile}
+                style="margin-left: auto;margin-right: auto;"
+                is-loading={isShowSpinner}
+                type="search"
+                disabled={isSearchInputDisabled}
+                required={recordIsRequired}
+            ></lightning-input>
+        </template>
+        <div class="slds-grid slds-wrap styles-container">
+            <template for:each={selectedGroups} for:item="item">
+                <div key={item} class="customWidth">
+                    <lightning-pill label={item} onremove={handleRemoveGroup}></lightning-pill>
+                </div>
+            </template>
+        </div>
+            <template if:true={isShowOptions}> 
+                <div class="slds-dropdown slds-dropdown_length-with-icon-7 slds-dropdown_fluid option_list" onfocusout={closeList} tabindex="0" style={heightOfShownRows}>
+                    <ul class="slds-listbox slds-listbox_vertical">
+                        <template if:true={options}>
+                            <template for:each={options} for:item="item">
+                                <li class="slds-listbox__item" key={item}
+                                    onmousedown={handleOptionSelect} data-name={item.itemFields} data-id={item.Id}>
+                                    <div class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta">
+                                                    <span class="slds-media__body">
+                                                            <span class="slds-listbox__option-text slds-listbox__option-text_entity slds_optiontxt">{item.dropdownFields}</span>
+                                                    </span>
+                                    </div>
+                                </li>
+                            </template>
+                        </template>
+                        <template if:true={isNoRecordsFound}>
+                            <div>{noRecordFoundLabel}</div>
+                        </template>
+                    </ul>
+                </div>
+            </template>
+    </div>
+</template>
